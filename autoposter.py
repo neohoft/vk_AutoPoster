@@ -30,7 +30,8 @@ class AutoPoster(object):
                         date = post['date']
             except Exception as e:
                 write_log(str(e))
-                print(e)
+                sleep(40)
+                continue
             sleep(40)
 
     # распарсить пост группы
