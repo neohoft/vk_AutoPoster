@@ -1,13 +1,18 @@
-# from threading import Lock
 from time import sleep
+
 import vk
+
 import config
+
+
+def write_log(log: str):
+    with open('log.log', 'a', encoding='UTF8') as file_log:
+        file_log.write(f'{log}\n')
 
 
 class AutoPoster(object):
 
     def __init__(self):
-        # self.lock = Lock()
         self.vk_api = vk.API(vk.Session(access_token=config.access_token),
                              timeout=10000,
                              v=5.73)
@@ -16,12 +21,16 @@ class AutoPoster(object):
     def get_posts(self, group_id):
         date: int = 1523741401
         while True:
-            posts = self.vk_api.wall.get(owner_id=group_id, count=2)
-            for post in posts['items']:
-                if post['date'] > date:
-                    print(post['text'][1:5])
-                    self.__post_parse(post)
-                    date = post['date']
+            try:
+                posts = self.vk_api.wall.get(owner_id=group_id, count=2)
+                for post in posts['items']:
+                    if post['date'] > date:
+                        print(post['text'][1:5])
+                        self.__post_parse(post)
+                        date = post['date']
+            except Exception as e:
+                write_log(str(e))
+                print(e)
             sleep(40)
 
     # распарсить пост группы

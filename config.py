@@ -1,6 +1,6 @@
 # access токен вк
 access_token = \
-    '6f52e2ce56628b57917861f4422605c0cbeaf108c377e0f31ccfffbf8d06c5257a1dcc10e24f9bf022f82'
+    '7162c30f2ff817cc17ca857a8c04f3a8f29776ed06ae205f689cd0e77820eac0755566b2f1aa661d780fc'
 
 # id Группы в которую нужно парсить посты (отрицателное число -12323)
 group_id = -165137979
